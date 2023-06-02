@@ -46,6 +46,46 @@ const Nav_Setting = [
   },
 ];
 
+const CallLogsData = [
+  {
+    id: 0,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+   
+    online: true,
+    missed:false,
+    incoming:true
+  },
+  {
+    id: 1,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+   
+    time: "9:36",
+    online: true,
+    missed:false,
+    incoming:false
+  },
+  {
+    id: 2,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    time: "9:36",
+    online: true,
+    missed:false,
+    incoming:true,
+  },
+  {
+    id: 3,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    time: "9:36",
+    online: true,
+    missed:true,
+    incoming:false
+  },
+]
+
 const ChatList = [
   {
     id: 0,
@@ -220,6 +260,25 @@ const Message_options = [
   },
 ];
 
+const MemberList=[
+  {
+  id:0,
+  img:faker.image.avatar(),
+  name:faker.name.fullName()
+},
+{
+  id:1,
+  img:faker.image.avatar(),
+  name:faker.name.fullName()
+},
+
+{
+  id:2,
+  img:faker.image.avatar(),
+  name:faker.name.fullName()
+}
+];
+
 const Shared_Links =[{
   type: "msg",
   subtype: "link",
@@ -300,5 +359,7 @@ export {
   Chat_History,
   Message_options,
   Shared_Documents,
-  Shared_Links
+  Shared_Links,
+  CallLogsData,
+  MemberList
 };
