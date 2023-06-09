@@ -17,8 +17,7 @@ export default function Home() {
   const {sideBar} = useSelector((store:any)=>store.app)
   return (
     
-   <Box className='max-h-[100vh] max-w-screen flex flex-row  overflow-hidden'>
-   <SideBar/>
+   <Box className='max-h-[100vh] w-screen flex flex-row  overflow-hidden'>
    <Chats/>
    <div className={'w-3/4'}>
    <Conversations/>

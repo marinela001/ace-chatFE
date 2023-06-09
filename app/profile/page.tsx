@@ -1,14 +1,15 @@
+
 'use client'
 import { Box } from '@mui/material'
 import React from 'react'
-import Groups from '../components/groups/Groups'
+import Profile from './Profile'
 
-const  Page = () => {
+const Page = () => {
   return (
-    <Box className='max-h-[100vh] w-screen flex flex-row  overflow-hidden'>
+    <Box className='max-h-[100vh]  w-screen flex flex-row  overflow-hidden'>
     {/* <SideBar/> */}
     {/* Left Side */}
-    <Groups/>
+<Profile/>
     {/* Right Side */}
         </Box>
   )

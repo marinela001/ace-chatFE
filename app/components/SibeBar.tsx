@@ -30,10 +30,10 @@ const SibeBar = () => {
 <Logo/>
 <div className=" flex flex-col gap-4 justify-center items-center">
     {Nav_Buttons.map((el:any)=>(
-        <IconButton key={el.index} className={selected===el.index ? 'bg-violet-400 hover:bg-violet-500 w-4 h-4 md:w-10 md:h-10 ' : ''} onClick={()=>setSelected(el.index)}>{el.icon}</IconButton>
+        <IconButton key={el.index} className={selected===el.index ? 'bg-violet-300 hover:bg-violet-400 w-4 h-4 md:w-10 md:h-10 ' : ''} onClick={()=>{setSelected(el.index);router.push(el.path)}}>{el.icon}</IconButton>
     ))}
     <Divider className='w-5'/>
-    <IconButton  className={selected===3 ? 'bg-violet-400 hover:bg-violet-500' : ''} onClick={()=>{setSelected(3);router.push('/settings') }}>
+    <IconButton  className={selected===3 ? 'bg-violet-300 hover:bg-violet-400' : ''} onClick={()=>{setSelected(3);router.push('/settings') }}>
 
     <SettingsOutlinedIcon/>
 
@@ -69,7 +69,7 @@ const SibeBar = () => {
         >
           {Profile_Menu.map((el,i) => (
             
-          <MenuItem onClick={()=>{}} key={i}>
+          <MenuItem onClick={()=>{router.push(el.path)}} key={i}>
             <div className='flex flex-row justify-between items-center gap-2'>
                 <span>{el.title}</span>
                 {el.icon}

@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 import { IconButton, Typography,Link,Divider } from '@mui/material'
 import { MagnifyingGlass,Phone,Plus } from 'phosphor-react'
-
 import { CallLogsData } from '@/app/data'
 import StartCall from './StartCall'
 import CallLogElement from './CallLogElement'
@@ -26,8 +25,7 @@ const handleClose= () => {
         </IconButton>
         </div>
         <Divider/>
-        <div className='flex-grow  h-[100%] overflow-y-auto space-y-3 scrollbar-corner-violet-300 scrollbar-track-slate-50 '
-    >
+        <div className='flex-grow  h-[100%] overflow-y-auto space-y-3 scrollbar-corner-violet-300 scrollbar-track-slate-50'>
       <Typography variant='subtitle2'>Call Logs</Typography>
      {/* Call Logs */}
      {CallLogsData.map((el)=>(

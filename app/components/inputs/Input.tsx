@@ -13,7 +13,8 @@ interface InputProps {
   disabled?: boolean;
   required?: boolean;
   register: UseFormRegister<FieldValues>,
-  errors: FieldErrors
+  errors: FieldErrors,
+  multiline?:boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -24,34 +25,64 @@ const Input: React.FC<InputProps> = ({
   register,
   required,
   errors,
+  multiline
 }) => {
   return (
     <div className="w-full relative">
-     
-      <input
-        id={id}
-        disabled={disabled}
-        {...register(id, { required })}
-        placeholder=" "
-        type={type}
-        className={`
-          peer
-          w-full
-          p-4
-          pt-6 
-          font-light 
-          bg-white 
-          border-2
-          rounded-md
-          outline-none
-          transition
-          disabled:opacity-70
-          disabled:cursor-not-allowed
-          pl-4
-          ${errors[id] ? 'border-rose-500' : 'border-neutral-300'}
-          ${errors[id] ? 'focus:border-rose-500' : 'focus:border-black'}
-        `}
-      />
+     {multiline ? 
+     (
+      <textarea
+  id={id}
+  disabled={disabled}
+  {...register(id, { required })}
+  placeholder=" "
+  className={`
+    peer
+    w-full
+    p-4
+    pt-6 
+    font-light 
+    bg-white 
+    border-2
+    rounded-md
+    outline-none
+    transition
+    disabled:opacity-70
+    disabled:cursor-not-allowed
+    pl-4
+    ${errors[id] ? 'border-rose-800' : 'border-neutral-300'}
+    ${errors[id] ? 'focus:border-rose-800' : 'focus:border-violet-800'}
+  `}
+/>
+     )
+: (
+<input
+  id={id}
+  disabled={disabled}
+  {...register(id, { required })}
+  placeholder=" "
+  type={type}
+  className={`
+    peer
+    w-full
+    p-4
+    pt-6 
+    font-light 
+    bg-white 
+    border-2
+    rounded-md
+    outline-none
+    transition
+    disabled:opacity-70
+    disabled:cursor-not-allowed
+    pl-4
+    ${errors[id] ? 'border-rose-500' : 'border-neutral-300'}
+    ${errors[id] ? 'focus:border-rose-500' : 'focus:border-violet-800'}
+  `}
+/>)     
+    
+    }
+    
       <label 
         className={`
           absolute 

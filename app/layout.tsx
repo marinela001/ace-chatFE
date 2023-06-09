@@ -1,6 +1,11 @@
+'use client'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import { Providers } from './redux/provider'
+import SideBar from './components/SibeBar'
+import { usePathname } from 'next/navigation';
+import { Navigate, Outlet } from "react-router-dom";
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,11 +19,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const pathname = usePathname();
+const authPaths =['/auth/login','/auth/register','/auth/forgotpassword']
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className='flex flex-row'>
         <Providers>
-          {children}</Providers>
+          {!authPaths.includes(pathname) && <SideBar/>}
+
+          {children}
+          </Providers>
       </body>
    
     </html>
