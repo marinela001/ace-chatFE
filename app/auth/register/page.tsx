@@ -1,6 +1,6 @@
 'use client'
-import AuthSocial from '@/app/components/auth/AuthSocial';
-import RegisterForm from '@/app/components/auth/RegisterForm';
+import AuthSocial from '@/app/auth/login/AuthSocial';
+import RegisterForm from '@/app/auth/register/RegisterForm';
 import Input from '@/app/components/inputs/Input';
 
 import { Typography,Link } from '@mui/material';

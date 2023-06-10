@@ -23,3 +23,8 @@ const useSelector = useAppSelector;
 const useDispatch = () => useAppDispatch();
 
 export { store, persistor, dispatch, useSelector, useDispatch };
+
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch

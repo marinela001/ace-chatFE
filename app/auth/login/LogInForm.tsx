@@ -1,18 +1,21 @@
 import React, { useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import Input from '../inputs/Input';
-import Button from '../Button';
+import Input from '../../components/inputs/Input';
+import Button from '../../components/Button';
 import { Link, Stack, Typography } from '@mui/material';
 import { Link as RouterLink } from "react-router-dom";
 import { useRouter } from 'next/navigation';
+import { AppDispatch, useDispatch } from "../../redux/store";
+import { LoginUser } from '@/app/redux/slices/auth';
 
 const LogInForm = () => {
   const router = useRouter()
-
+  const dispatch:AppDispatch = useDispatch ()
   const [isLoading, setIsLoading] = useState(false);
   const { 
     register, 
     handleSubmit,
+    reset,
     formState: {
       errors,
     },
@@ -24,10 +27,17 @@ const LogInForm = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = 
-  (data) => {
-    console.log('test')
+  async  (data) => {
+    try {
+      console.log(data);
+      // submit data to backend
+      dispatch(LoginUser(data));
+    } catch (error) {
+      console.error(error);
+      reset();
+     
+    }
 
-   console.log(data)
     }
   
   return (

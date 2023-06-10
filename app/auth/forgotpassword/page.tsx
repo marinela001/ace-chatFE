@@ -2,7 +2,7 @@
 import React from 'react'
 import { Link, Typography } from '@mui/material';
 import { CaretLeft } from 'phosphor-react';
-import AuthResetPasswordForm from '@/app/components/auth/AuthResetPasswordForm';
+import AuthResetPasswordForm from '@/app/auth/forgotpassword/AuthResetPasswordForm';
 import { useRouter } from 'next/navigation';
 
 const Page = () => {

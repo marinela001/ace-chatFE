@@ -4,7 +4,7 @@ import { useForm, FieldValues, SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { IconButton, InputAdornment, TextField } from '@mui/material';
 
-import Button from '../Button';
+import Button from '../../components/Button';
 import { Eye, EyeSlash } from 'phosphor-react';
 
 const NewPasswordForm = () => {

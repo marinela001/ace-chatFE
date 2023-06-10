@@ -1,5 +1,5 @@
 'use client'
-import NewPasswordForm from '@/app/components/auth/NewPasswordForm'
+import NewPasswordForm from '@/app/auth/newpassword/NewPasswordForm'
 import { Typography } from '@mui/material'
 import { useRouter } from 'next/navigation'
 import { Link, CaretLeft } from 'phosphor-react'

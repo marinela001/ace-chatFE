@@ -4,7 +4,7 @@ import { TransitionProps } from '@mui/material/transitions'
 
 import React, { useState } from 'react'
 import { useForm, FieldValues, SubmitHandler } from 'react-hook-form';
-import Input from '../inputs/Input';
+import Input from '../components/inputs/Input';
 
 interface AddNewGroupProps{
     open :boolean;

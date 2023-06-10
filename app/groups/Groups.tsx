@@ -3,7 +3,7 @@ import { ChatList } from '@/app/data'
 import { IconButton, Typography,Link,Divider } from '@mui/material'
 import { MagnifyingGlass,Plus } from 'phosphor-react'
 import React from 'react'
-import ChatElement from '../chat/ChatElement'
+import ChatElement from '../components/chat/ChatElement'
 import AddNewGroup from './AddNewGroup'
 
 const Groups = () => {

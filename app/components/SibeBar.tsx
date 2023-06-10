@@ -11,18 +11,26 @@ import { faker } from "@faker-js/faker";
 
 import {Nav_Buttons, Profile_Menu} from '../data'
 import { useRouter } from 'next/navigation';
+import { RootState, useSelector } from '../redux/store'
 
 const SibeBar = () => {
   const router = useRouter()
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-      setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
-    const [selected,setSelected] = useState(0)
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const [selected,setSelected] = useState(0)
+  const {isLoggedIn} = useSelector((state:RootState)=>state.auth)
+ if(!isLoggedIn){
+  return router.push('/auth/login')
+  
+ }
+  
+
   return ( 
      <Stack className="h-[100vh] md:w-16 w-7 bg-violet-200  shadow-md flex-col justify-between" spacing={2}>
         <div>

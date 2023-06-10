@@ -4,8 +4,8 @@ import {Link as RouterLink} from 'react-router-dom'
 import React from 'react'
 import Logo from '@/app/components/Logo'
 import { useRouter } from 'next/navigation'
-import AuthSocial from '@/app/components/auth/AuthSocial'
-import LogInForm from '@/app/components/auth/LogInForm'
+import AuthSocial from '@/app/auth/login/AuthSocial'
+import LogInForm from '@/app/auth/login/LogInForm'
 
 const Page = () => {
     const router = useRouter()

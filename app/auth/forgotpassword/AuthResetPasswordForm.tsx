@@ -1,8 +1,8 @@
 'use client'
 import React, { useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import Input from '../inputs/Input';
-import Button from '../Button';
+import Input from '../../components/inputs/Input';
+import Button from '../../components/Button';
 
 const AuthResetPasswordForm = () => {
     

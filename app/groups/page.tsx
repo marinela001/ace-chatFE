@@ -1,7 +1,7 @@
 'use client'
 import { Box } from '@mui/material'
 import React from 'react'
-import Groups from '../components/groups/Groups'
+import Groups from './Groups'
 
 const  Page = () => {
   return (

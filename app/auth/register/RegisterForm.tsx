@@ -3,7 +3,7 @@ import Input from '@/app/components/inputs/Input';
 import { Typography } from '@mui/material';
 import React, { useState } from 'react'
 import { FieldValues, useForm,SubmitHandler } from 'react-hook-form';
-import Button from '../Button';
+import Button from '../../components/Button';
 
 const RegisterForm = () => {
     const [isLoading,setIsLoading] = useState(false);

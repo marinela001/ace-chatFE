@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 import { IconButton, Typography,Link,Divider } from '@mui/material'
 import { MagnifyingGlass,Phone,Plus } from 'phosphor-react'
 import { CallLogsData } from '@/app/data'
-import StartCall from './StartCall'
-import CallLogElement from './CallLogElement'
+import StartCall from '../components/call_elements/StartCall'
+import CallLogElement from '../components/call_elements/CallLogElement'
 const Call = () => {
     const [dialogOpen,setDialogOpen]=useState(false);
 const handleClose= () => {

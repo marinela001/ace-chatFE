@@ -4,7 +4,7 @@ import { Avatar, Divider, IconButton, Typography } from '@mui/material'
 import { useRouter } from 'next/navigation'
 import { Bell, CaretLeft, Image, Info, Key, Keyboard, Lock, Note } from 'phosphor-react'
 import React, { useState } from 'react'
-import Shortcuts from './Shortcuts'
+import Shortcuts from '../components/settings_menus/Shortcuts'
 
 const Settings = () => {
     const [openShortcut,setOpenShortcut] = useState(false);
