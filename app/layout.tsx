@@ -5,6 +5,7 @@ import { Providers } from './redux/provider'
 import SideBar from './components/SibeBar'
 import { usePathname } from 'next/navigation';
 import { Navigate, Outlet } from "react-router-dom";
+import {BrowserRouter as Router} from 'react-router-dom';
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -20,8 +21,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   const pathname = usePathname();
-const authPaths =['/auth/login','/auth/register','/auth/forgotpassword']
+const authPaths =['/auth/login','/auth/register','/auth/forgotpassword','/auth/newpassword','/auth/verify']
   return (
+    <Router>
+
     <html lang="en">
       <body className='flex flex-row'>
         <Providers>
@@ -32,5 +35,6 @@ const authPaths =['/auth/login','/auth/register','/auth/forgotpassword']
       </body>
    
     </html>
+    </Router>
   )
 }

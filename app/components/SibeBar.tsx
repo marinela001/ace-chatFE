@@ -11,7 +11,8 @@ import { faker } from "@faker-js/faker";
 
 import {Nav_Buttons, Profile_Menu} from '../data'
 import { useRouter } from 'next/navigation';
-import { RootState, useSelector } from '../redux/store'
+import { RootState, dispatch, useSelector } from '../redux/store'
+import { LogoutUser } from '../redux/slices/auth';
 
 const SibeBar = () => {
   const router = useRouter()
@@ -77,7 +78,7 @@ const SibeBar = () => {
         >
           {Profile_Menu.map((el,i) => (
             
-          <MenuItem onClick={()=>{router.push(el.path)}} key={i}>
+          <MenuItem onClick={()=>{ i==2 ? dispatch(LogoutUser()) : router.push(el.path)}} key={i}>
             <div className='flex flex-row justify-between items-center gap-2'>
                 <span>{el.title}</span>
                 {el.icon}

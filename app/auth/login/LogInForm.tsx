@@ -29,7 +29,6 @@ const LogInForm = () => {
   const onSubmit: SubmitHandler<FieldValues> = 
   async  (data) => {
     try {
-      console.log(data);
       // submit data to backend
       dispatch(LoginUser(data));
     } catch (error) {

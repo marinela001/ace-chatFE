@@ -4,6 +4,8 @@ import { Typography } from '@mui/material';
 import React, { useState } from 'react'
 import { FieldValues, useForm,SubmitHandler } from 'react-hook-form';
 import Button from '../../components/Button';
+import { dispatch } from '@/app/redux/store';
+import { RegisterUser } from '@/app/redux/slices/auth';
 
 const RegisterForm = () => {
     const [isLoading,setIsLoading] = useState(false);
@@ -18,9 +20,8 @@ const RegisterForm = () => {
      });
      const onSubmit: SubmitHandler<FieldValues> = 
      (data) => {
-       console.log('test')
-   
-      console.log(data)
+
+      dispatch(RegisterUser(data))
        }
   return (
     <div className='flex flex-col w-1/3 gap-2 '>
@@ -31,7 +32,7 @@ const RegisterForm = () => {
 </div>
           <Input  id='email' label='Email' register={register} disabled={isLoading} errors={errors} required/>
               <Input  id='password' type='password' label='Password' register={register} disabled={isLoading} errors={errors} required/>
-              <Button label='Log In' onClick={handleSubmit(onSubmit)}/> 
+              <Button label='Register' onClick={handleSubmit(onSubmit)}/> 
     </div>
   )
 }

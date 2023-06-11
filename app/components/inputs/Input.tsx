@@ -15,6 +15,10 @@ interface InputProps {
   register: UseFormRegister<FieldValues>,
   errors: FieldErrors,
   multiline?:boolean;
+  maxLength?: number;
+  centerText?:boolean;
+
+  
 }
 
 const Input: React.FC<InputProps> = ({
@@ -25,7 +29,9 @@ const Input: React.FC<InputProps> = ({
   register,
   required,
   errors,
-  multiline
+  multiline,
+  maxLength,
+  centerText
 }) => {
   return (
     <div className="w-full relative">
@@ -52,12 +58,14 @@ const Input: React.FC<InputProps> = ({
     pl-4
     ${errors[id] ? 'border-rose-800' : 'border-neutral-300'}
     ${errors[id] ? 'focus:border-rose-800' : 'focus:border-violet-800'}
+    ${centerText}
   `}
 />
      )
 : (
 <input
   id={id}
+  maxlength={maxLength}
   disabled={disabled}
   {...register(id, { required })}
   placeholder=" "
@@ -78,6 +86,7 @@ const Input: React.FC<InputProps> = ({
     pl-4
     ${errors[id] ? 'border-rose-500' : 'border-neutral-300'}
     ${errors[id] ? 'focus:border-rose-500' : 'focus:border-violet-800'}
+    ${centerText ? 'text-center' : ''}
   `}
 />)     
     
@@ -99,6 +108,8 @@ const Input: React.FC<InputProps> = ({
           peer-focus:scale-75
           peer-focus:-translate-y-4
           ${errors[id] ? 'text-rose-500' : 'text-zinc-400'}
+          
+
         `}
       >
         {label}

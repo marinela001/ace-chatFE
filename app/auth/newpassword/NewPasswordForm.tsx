@@ -6,13 +6,16 @@ import { IconButton, InputAdornment, TextField } from '@mui/material';
 
 import Button from '../../components/Button';
 import { Eye, EyeSlash } from 'phosphor-react';
+import { useSearchParams } from 'react-router-dom';
+import { dispatch } from '@/app/redux/store';
+import { NewPassword } from '@/app/redux/slices/auth';
 
 const NewPasswordForm = () => {
     const router = useRouter()
 
     const [isLoading, setIsLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-
+ const [queryParams] =useSearchParams()
     const { 
         register, 
         handleSubmit,
@@ -31,9 +34,8 @@ const NewPasswordForm = () => {
     
       const onSubmit: SubmitHandler<FieldValues> = 
       (data) => {
-        console.log('test')
-    
-       console.log(data)
+     const token = queryParams.get('token')
+       dispatch(NewPassword({...data,token}));
         }
   return (
     <div className='flex flex-col w-1/3 gap-2 '>

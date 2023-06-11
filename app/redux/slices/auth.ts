@@ -1,6 +1,6 @@
 import {createSlice } from "@reduxjs/toolkit";
 import axios from "../../utils/axios";
-import { AppDispatch } from "../store";
+import { AppDispatch, RootState } from "../store";
 
 
 // ----------------------------------------------------------------------
@@ -62,7 +62,8 @@ export function LoginUser(formValues:any) {
         }
       )
       .then(function (response:any) {
-        console.log(response);
+        if(response.status ===200){
+
         dispatch(
           slice.actions.logIn({
             isLoggedIn: true,
@@ -75,6 +76,8 @@ export function LoginUser(formValues:any) {
         dispatch(
           slice.actions.updateIsLoading({ isLoading: false, error: false })
         );
+        window.location.href = "/";
+      }
       })
       .catch(function (error:any) {
         console.log(error);
@@ -86,14 +89,14 @@ export function LoginUser(formValues:any) {
 }
 
 export function LogoutUser() {
-  return async (dispatch:any) => {
+  return async (dispatch:AppDispatch) => {
     window.localStorage.removeItem("user_id");
     dispatch(slice.actions.signOut());
   };
 }
 
 export function RegisterUser(formValues:any) {
-  return async (dispatch:any, getState:any) => {
+  return async (dispatch:AppDispatch, getState:any) => {
     dispatch(slice.actions.updateIsLoading({ isLoading: true, error: false }));
 
     await axios
@@ -109,7 +112,6 @@ export function RegisterUser(formValues:any) {
         }
       )
       .then(function (response) {
-        console.log(response);
         dispatch(
           slice.actions.updateRegisterEmail({ email: formValues.email })
         );
@@ -131,4 +133,117 @@ export function RegisterUser(formValues:any) {
       });
   };
 }
+export function ForgotPassword(formValues:any) {
+  return async (dispatch:AppDispatch) => {
+    dispatch(slice.actions.updateIsLoading({ isLoading: true, error: false }));
 
+    await axios
+      .post(
+        "/auth/forgot-password",
+        {
+          ...formValues,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then(function (response) {
+
+        
+        dispatch(
+          slice.actions.updateIsLoading({ isLoading: false, error: false })
+        );
+      })
+      .catch(function (error) {
+        console.log(error);
+        dispatch(
+          slice.actions.updateIsLoading({ isLoading: false, error: true })
+        );
+      });
+  };
+}
+export function NewPassword(formValues:any) {
+  return async (dispatch:AppDispatch) => {
+    dispatch(slice.actions.updateIsLoading({ isLoading: true, error: false }));
+
+    await axios
+      .post(
+        "/auth/reset-password",
+        {
+          ...formValues,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then(function (response) {
+        dispatch(
+            slice.actions.logIn({
+              isLoggedIn: true,
+              token: response.data.token,
+            })
+          );
+        
+        dispatch(
+          slice.actions.updateIsLoading({ isLoading: false, error: false })
+        );
+      })
+      .catch(function (error) {
+        console.log(error);
+        dispatch(
+          slice.actions.updateIsLoading({ isLoading: false, error: true })
+        );
+      });
+  };
+}
+
+
+
+export function VerifyEmail(formValues:any) {
+  return async (dispatch:AppDispatch, getState:RootState) => {
+    dispatch(slice.actions.updateIsLoading({ isLoading: true, error: false }));
+
+    await axios
+      .post(
+        "/auth/verify",
+        {
+          ...formValues,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then(function (response) {
+        if(response.status ==200){
+        dispatch(slice.actions.updateRegisterEmail({ email: "" }));
+        window.localStorage.setItem("user_id", response.data.user_id);
+        dispatch(
+          slice.actions.logIn({
+            isLoggedIn: true,
+            token: response.data.token,
+          })
+        );
+
+
+       
+        dispatch(
+          slice.actions.updateIsLoading({ isLoading: false, error: false })
+        );
+        window.location.href = "/";
+      
+      }
+      })
+      .catch(function (error) {
+        console.log(error);
+        dispatch(
+          slice.actions.updateIsLoading({ error: true, isLoading: false })
+        );
+      });
+  };
+}
