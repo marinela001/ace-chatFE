@@ -6,6 +6,7 @@ import SideBar from './components/SibeBar'
 import { usePathname } from 'next/navigation';
 import { Navigate, Outlet } from "react-router-dom";
 import {BrowserRouter as Router} from 'react-router-dom';
+import ToasterProvider from './providers/ToasterProvider'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -28,6 +29,8 @@ const authPaths =['/auth/login','/auth/register','/auth/forgotpassword','/auth/n
     <html lang="en">
       <body className='flex flex-row'>
         <Providers>
+        <ToasterProvider />
+
           {!authPaths.includes(pathname) && <SideBar/>}
 
           {children}

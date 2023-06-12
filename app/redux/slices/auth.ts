@@ -1,6 +1,7 @@
 import {createSlice } from "@reduxjs/toolkit";
 import axios from "../../utils/axios";
 import { AppDispatch, RootState } from "../store";
+import { toast } from "react-hot-toast";
 
 
 // ----------------------------------------------------------------------
@@ -44,7 +45,7 @@ export default slice.reducer;
 
 
 export function LoginUser(formValues:any) {
-  return async (dispatch:AppDispatch) => {
+  return async (dispatch:AppDispatch,getState:RootState) => {
     // Make API call here
 
     dispatch(slice.actions.updateIsLoading({ isLoading: true, error: false }));
@@ -76,14 +77,26 @@ export function LoginUser(formValues:any) {
         dispatch(
           slice.actions.updateIsLoading({ isLoading: false, error: false })
         );
-        window.location.href = "/";
+       
+
+
       }
+    
       })
       .catch(function (error:any) {
         console.log(error);
         dispatch(
           slice.actions.updateIsLoading({ isLoading: false, error: true })
         );
+        toast.error(error.message);
+
+      })
+      .finally(() => {
+        if (!getState().auth.error) 
+        { toast.success("Loged in successfully");
+          window.location.href = "/";
+
+        }
       });
   };
 }
@@ -111,7 +124,7 @@ export function RegisterUser(formValues:any) {
           },
         }
       )
-      .then(function (response) {
+      .then(function (response:any) {
         dispatch(
           slice.actions.updateRegisterEmail({ email: formValues.email })
         );
@@ -119,12 +132,15 @@ export function RegisterUser(formValues:any) {
         dispatch(
           slice.actions.updateIsLoading({ isLoading: false, error: false })
         );
+
       })
       .catch(function (error) {
         console.log(error);
         dispatch(
           slice.actions.updateIsLoading({ error: true, isLoading: false })
         );
+        toast.error(error.message);
+        
       })
       .finally(() => {
         if (!getState().auth.error) {
@@ -149,18 +165,22 @@ export function ForgotPassword(formValues:any) {
           },
         }
       )
-      .then(function (response) {
+      .then(function (response:any) {
 
         
         dispatch(
           slice.actions.updateIsLoading({ isLoading: false, error: false })
         );
+        toast.success("Reset Link sended");
+
       })
       .catch(function (error) {
         console.log(error);
         dispatch(
           slice.actions.updateIsLoading({ isLoading: false, error: true })
         );
+        toast.error(error.message);
+
       });
   };
 }
@@ -180,7 +200,7 @@ export function NewPassword(formValues:any) {
           },
         }
       )
-      .then(function (response) {
+      .then(function (response:any) {
         dispatch(
             slice.actions.logIn({
               isLoggedIn: true,
@@ -191,12 +211,16 @@ export function NewPassword(formValues:any) {
         dispatch(
           slice.actions.updateIsLoading({ isLoading: false, error: false })
         );
+        toast.success("Password changed successfully");
+
       })
       .catch(function (error) {
         console.log(error);
         dispatch(
           slice.actions.updateIsLoading({ isLoading: false, error: true })
         );
+        toast.error(error.message);
+
       });
   };
 }
@@ -219,7 +243,7 @@ export function VerifyEmail(formValues:any) {
           },
         }
       )
-      .then(function (response) {
+      .then(function (response:any) {
         if(response.status ==200){
         dispatch(slice.actions.updateRegisterEmail({ email: "" }));
         window.localStorage.setItem("user_id", response.data.user_id);
@@ -236,14 +260,16 @@ export function VerifyEmail(formValues:any) {
           slice.actions.updateIsLoading({ isLoading: false, error: false })
         );
         window.location.href = "/";
+        toast.success("User verified successully");
       
       }
       })
       .catch(function (error) {
-        console.log(error);
         dispatch(
           slice.actions.updateIsLoading({ error: true, isLoading: false })
         );
+        toast.error(error.message);
+
       });
   };
 }
