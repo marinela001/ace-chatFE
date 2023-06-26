@@ -76,7 +76,7 @@ const Contact = () => {
   return (
     <div className=' h-[100%] w-full flex flex-col border-l-2 overflow-y-scroll scrollbar-thin'>
         {/* Header */}
-        <div className='h-16 bg-violet-200 flex flex-row gap-1 items-center p-3 '>
+        <div className='h-16 bg-violet-100 flex flex-row gap-1 items-center p-3 '>
             <IconButton onClick={()=>dispatch(ToggleSidebar())}>
                 <XCircle size={20}/>
             </IconButton>

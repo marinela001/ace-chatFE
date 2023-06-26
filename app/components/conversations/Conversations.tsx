@@ -7,11 +7,11 @@ const Conversations = () => {
   return (
     <div className='flex flex-col justify-between items-center h-full'>
       {/* Header */}
-      <div className='w-full h-16 bg-violet-100'>
-<Header/>
+      <div className='w-full h-16 bg-violet-100 shadow-lg'>
+<Header />
       </div>
       {/* Messages */}
-      <div className='flex-grow bg-violet-50 w-[100%] h-[100%] overflow-y-auto'>
+      <div className='flex-grow  w-[100%] h-[100%] overflow-y-auto'>
         <Messages menu = {false}/>
       </div>
       {/* Footer */}

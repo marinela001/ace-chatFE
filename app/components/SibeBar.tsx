@@ -33,7 +33,7 @@ const SibeBar = () => {
   
 
   return ( 
-     <Stack className="h-[100vh] md:w-16 w-7 bg-violet-200  shadow-md flex-col justify-between" spacing={2}>
+     <Stack className="h-[100vh] md:w-16 w-7 bg-violet-50  shadow-md flex-col justify-between" spacing={2}>
         <div>
 <div className="flex flex-col gap-1">
 <Logo/>

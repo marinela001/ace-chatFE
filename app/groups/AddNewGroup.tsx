@@ -82,7 +82,7 @@ const MEMBERS = ['member1','member2','member3']
    
   id="members"
   multiple
-
+  color='secondary'
   options={MEMBERS.map((option) =>option)}
   renderInput={(params) => <TextField {...params} label="Members" id="members" />}
 /></div>
