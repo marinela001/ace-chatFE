@@ -64,7 +64,7 @@ export function LoginUser(formValues:any) {
       )
       .then(function (response:any) {
         if(response.status ===200){
-
+       console.log(response.data.user_id)
         dispatch(
           slice.actions.logIn({
             isLoggedIn: true,

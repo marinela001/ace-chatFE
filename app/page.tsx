@@ -6,12 +6,14 @@ import Conversations from './components/conversations/Conversations';
 import Contact from './components/tabs/Contact';
 import SharedMessages from './components/tabs/SharedMessages';
 import StarredMessages from './components/tabs/StarredMessages';
-import { RootState, useSelector } from './redux/store'
+import { RootState, dispatch, useSelector } from './redux/store'
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { socket, connectSocket } from "./socket";
 import { toast } from "react-hot-toast";
 import NoChatSelected from './components/NoChatSelected';
+import conversations, { AddDirectConversation, UpdateDirectConversation } from './redux/slices/conversations';
+import { SelectConversation } from './redux/slices/app';
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -23,20 +25,16 @@ export default function Home() {
   const {isLoggedIn} = useSelector((state:RootState)=>state.auth)
    const router =useRouter()
    const {user_id} = useSelector((state:RootState) => state.auth);
-   const {room_id} = useSelector((state:RootState)=>state.app)
+   const {room_id} = useSelector((state:RootState)=>state.app);
+   const {conversations,current_conversation} = useSelector((state:RootState) => state.conversation.direct_chat)
    
    useEffect(() => {
     if (isLoggedIn) {
  
-
+console.log(user_id)
       if (!socket) {
         connectSocket(user_id);
       }
-
-    
-
-   
-    
 
       socket.on("new_friend_request", (data) => {
       toast.success(data.message);
@@ -48,6 +46,19 @@ export default function Home() {
 
       socket.on("request_sent", (data) => {
         toast.success(data.message);
+      });
+       socket.on("start_chat", (data) => {
+       console.log(data)
+       const existing_conversation = conversations.find((el:any)=>el?.id == data._id) 
+       if (existing_conversation) {
+        // update direct conversation
+        dispatch(UpdateDirectConversation({ conversation: data }));
+      } else {
+        // add direct conversation
+        dispatch(AddDirectConversation({ conversation: data }));
+      }
+
+      dispatch(SelectConversation({ room_id: data._id }));
       });
     }
 

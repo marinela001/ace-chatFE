@@ -11,13 +11,16 @@ const FriendRequests = () => {
     useEffect(() => {
       dispatch(FetchFriendRequests());
     }, []);
-  
+  if(friendRequests.length == 0){
+    return <>No friends request found</>;
+
+  }
     return (
-      <>
-        {friendRequests?.map((el:any, idx:number) => {
+      <>{friendRequests &&  friendRequests?.map((el:any, idx:number) => {
             
           return <UserElement key={idx} {...el}  tab_key="REQUESTS"/>;
-        })}
+        })} 
+        
       </>
     );
   };

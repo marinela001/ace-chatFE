@@ -44,7 +44,6 @@ const UserElement:React.FC<UserElementProps> = ({img,firstName,lastName,online,_
             onClick={() => {
 
               socket.emit("friend_request", { to: _id, from: user_id }, () => {
-                console.log('frined requesr')
                 toast.success("request sent");
               });
             }}

@@ -6,15 +6,20 @@ import UserElement from "./UserElement";
 
 const FriendsList = () => {
   
-  const { users } = useSelector((state:RootState) => state.app);
+  const { friends  } = useSelector((state:RootState) => state.app);
   
     useEffect(() => {
-      dispatch(FetchUsers());
+      dispatch(FetchFriends());
     }, []);
+
+    if(friends.length == 0){
+
+      return <>No friends found</>;
+    }
   
     return (
       <>
-        {users?.map((el:any, idx:number) => {
+        {friends ?.map((el:any, idx:number) => {
             
           return <UserElement key={idx} {...el} tab_key="FRIENDS" />;
         })}
