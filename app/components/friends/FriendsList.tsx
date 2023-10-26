@@ -12,7 +12,7 @@ const FriendsList = () => {
       dispatch(FetchFriends());
     }, []);
 
-    if(friends.length == 0){
+    if(friends?.length == 0){
 
       return <>No friends found</>;
     }

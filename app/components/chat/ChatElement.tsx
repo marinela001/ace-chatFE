@@ -4,6 +4,7 @@ import { faker } from '@faker-js/faker';
 import React from 'react';
 import { RootState, dispatch, useSelector } from '@/app/redux/store';
 import { SelectConversation } from '@/app/redux/slices/app';
+import { SetCurrentConversation } from '@/app/redux/slices/conversations';
 interface ChatElementProps {
   id: number;
   img: string;
@@ -34,7 +35,14 @@ const ChatElement: React.FC<ChatElementProps> = ({
 
   return (
     <div className={`  w-full md:p-4  p-1 cursor-pointer rounded-lg flex flex-row justify-between hover:bg-violet-300 ${room_id==id ? 'bg-violet-300':'bg-slate-100' }`}
-    onClick={()=> dispatch(SelectConversation({room_id: id}))}
+    onClick={()=> {dispatch(SelectConversation({room_id: id}));dispatch(SetCurrentConversation({id,
+      img,
+      name,
+      msg,
+      time,
+      unread,
+      pinned,
+      online}))} }
     >
       <Stack direction="row" spacing={2}>
       <Badge

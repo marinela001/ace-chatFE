@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 import { socket, connectSocket } from "./socket";
 import { toast } from "react-hot-toast";
 import NoChatSelected from './components/NoChatSelected';
-import conversations, { AddDirectConversation, UpdateDirectConversation } from './redux/slices/conversations';
+import conversations, { AddDirectConversation, AddDirectMessage, UpdateDirectConversation } from './redux/slices/conversations';
 import { SelectConversation } from './redux/slices/app';
 
 
@@ -43,6 +43,23 @@ console.log(user_id)
       socket.on("request_accepted", (data) => {
       toast.success(data.message)
       });
+      socket.on("new_message", (data) => {
+        const message = data.message;
+        console.log(current_conversation, data);
+        // check if msg we got is from currently selected conversation
+        if (current_conversation?.id === data.conversation_id) {
+          dispatch(
+            AddDirectMessage({
+              id: message._id,
+              type: "msg",
+              subtype: message.type,
+              message: message.text,
+              incoming: message.to === user_id,
+              outgoing: message.from === user_id,
+            })
+          );
+        }
+      });
 
       socket.on("request_sent", (data) => {
         toast.success(data.message);
@@ -50,10 +67,15 @@ console.log(user_id)
        socket.on("start_chat", (data) => {
        console.log(data)
        const existing_conversation = conversations.find((el:any)=>el?.id == data._id) 
+       console.log('conversations',conversations)
+       console.log('existing conversations',existing_conversation)
        if (existing_conversation) {
+        console.log('existing')
         // update direct conversation
         dispatch(UpdateDirectConversation({ conversation: data }));
       } else {
+        console.log('not existing')
+
         // add direct conversation
         dispatch(AddDirectConversation({ conversation: data }));
       }
