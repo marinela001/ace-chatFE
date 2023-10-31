@@ -6,7 +6,7 @@ import React from 'react'
 const Page = () => {
   const router = useRouter();
   router.push("/")
-  return null;
+  return (<></>);
 }
 
 export default Page
