@@ -88,49 +88,25 @@ const test ='bg';
        <Picker data={data}  onEmojiSelect={(emoji:any) => {
                   handleEmojiClick(emoji.native);
                 }}  /></div>
-    <TextField fullWidth placeholder='write a message..' variant='filled'  value={value} inputRef={inputRef} onChange={()=>setValue(event.target.value)}  InputProps={{
-      disableUnderline:true,
-      startAdornment:(
-        <Stack sx={{ width: "max-content" }}>
-           <Stack
-              sx={{
-                position: "relative",
-                display: openActions ? "inline-block" : "none",
-              }}
-            >
-              {Actions.map((el,i) => (
-                <Tooltip placement="right" title={el.title} key={i}>
-                  <Fab
-                    onClick={() => {
-                      setOpenActions(!openActions);
-                    }}
-                    sx={{
-                      position: "absolute",
-                      top: -el.y,
-                      backgroundColor: el.color,
-                    }}
-                    aria-label="add"
-                    className={`bg-${el.color}`}
-                  >
-                    {el.icon}
-                  </Fab>
-                </Tooltip>
-              ))}
-            </Stack>
-      <InputAdornment position='start'>
-      <IconButton onClick={()=>setOpenActions(!openActions)}>
-        <LinkSimple/>
-      </IconButton>
-      </InputAdornment>
+  <TextField
+  fullWidth
+  placeholder='write a message..'
+  variant='filled'
+  value={value}
+  inputRef={inputRef}
+  onChange={(event) => setValue(event.target.value)}  // Corrected line
+  InputProps={{
+    disableUnderline: true,
+    startAdornment: (
+      <Stack sx={{ width: "max-content" }}>
+        <Picker onSelect={(emoji:any) => {
+          handleEmojiClick(emoji.native);
+        }} />
       </Stack>
-      ),
-      endAdornment:(
-      <InputAdornment position='end'>
-      <IconButton onClick={()=>setIsOpen(!isOpen)}>
-        <Smiley/>
-      </IconButton>
-      </InputAdornment>)
-    }}/>
+    ),
+  }}
+/>
+
     <div className='p-2 bg-violet-400 rounded-lg '>
       <IconButton onClick={() => {
         console.log(value)
