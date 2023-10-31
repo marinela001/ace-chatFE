@@ -65,7 +65,7 @@ const Input: React.FC<InputProps> = ({
 : (
 <input
   id={id}
-  maxlength={maxLength}
+  maxLength={maxLength}
   disabled={disabled}
   {...register(id, { required })}
   placeholder=" "
