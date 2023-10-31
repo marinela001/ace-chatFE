@@ -27,12 +27,12 @@ const SibeBar = () => {
   const [selected,setSelected] = useState(0)
   const {isLoggedIn} = useSelector((state:RootState)=>state.auth)
  if(!isLoggedIn){
-  return router.push('/auth/login')
+  return (<>{router.push('/auth/login')}</>)
   
  }
   
-
   return ( 
+    <div>
      <Stack className="h-[100vh] md:w-16 w-7 bg-violet-50  shadow-md flex-col justify-between" spacing={2}>
         <div>
 <div className="flex flex-col gap-1">
@@ -92,7 +92,7 @@ const SibeBar = () => {
 </div>
         
     </Stack>
-    
+    </div>
    
   )
 }

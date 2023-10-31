@@ -20,8 +20,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const pathname = usePathname();
-const authPaths =['/auth/login','/auth/register','/auth/forgotpassword','/auth/newpassword','/auth/verify']
+
+  const pathname : string|null = usePathname();
+const authPaths:Array<string|null> =['/auth/login','/auth/register','/auth/forgotpassword','/auth/newpassword','/auth/verify']
   return (
     <Router>
 
@@ -30,7 +31,7 @@ const authPaths =['/auth/login','/auth/register','/auth/forgotpassword','/auth/n
         <Providers>
         <ToasterProvider />
 
-          {!authPaths.includes(pathname) && <SideBar/>}
+          {!authPaths.includes(pathname) &&   <SideBar/> }
 
           {children}
           </Providers>
