@@ -98,17 +98,17 @@ const Contact = () => {
     <div className='flex flex-col justify-center items-center'>
         <IconButton>
     <VideoCamera size={18} /></IconButton>
-    <Typography variant='article'>Audio</Typography>
+    <Typography variant='body1'>Audio</Typography>
     </div>
     <div className='flex flex-col justify-center items-center'>
         <IconButton>
     <Phone size={18} /></IconButton>
-        <Typography variant='article'>Call</Typography>
+        <Typography variant='body1'>Call</Typography>
     </div>
  </div>
  <Divider/>
  <div className="flex flex-col gap-2 justify-center items-start">
-    <Typography variant='article'>About</Typography>
+    <Typography variant='body1'>About</Typography>
     <Typography variant="body2">Imagination is the only limit</Typography>
 
  </div>
